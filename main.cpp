@@ -7,6 +7,7 @@ int main(){
 
 
 	cout<<"hello";
+	cout<<"pull";
 
  return 0;
 }
