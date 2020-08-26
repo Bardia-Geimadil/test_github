@@ -1,13 +1,20 @@
-#include<iostream>
+#include <QGuiApplication>
+#include <QQmlApplicationEngine>
 
-using namespace std;
+int main(int argc, char *argv[])
+{
+    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
+    QGuiApplication app(argc, argv);
 
-int main(){
+    QQmlApplicationEngine engine;
+    const QUrl url(QStringLiteral("qrc:/main.qml"));
+    QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
+                     &app, [url](QObject *obj, const QUrl &objUrl) {
+        if (!obj && url == objUrl)
+            QCoreApplication::exit(-1);
+    }, Qt::QueuedConnection);
+    engine.load(url);
 
-
-	cout<<"hello";
-	cout<<"pull";
-
- return 0;
+    return app.exec();
 }
