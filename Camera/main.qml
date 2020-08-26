@@ -10,6 +10,12 @@ Window {
     width: 640
     height: 480
 
+    Rectangle{
+        width: 50
+        height:50
+        color: "blue"
+    }
+
 
 
    Rectangle{
